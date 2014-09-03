@@ -1,0 +1,39 @@
+@import "normalize.css";
+@import "common.css";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700&subset=latin,cyrillic-ext);
+
+/*Variables*/
+$mainFontStack: 'Open Sans', sans-serif;
+$mainFontSize: 11pt;
+$mainColor: #746254;
+$linkColor: #746206;
+$whiteColor: #fff;
+$headerPadding: 10px 5px 10px 5px;
+$noMargin: 0;
+$noPadding: 0;
+$listPadding: 0 10px 0 0;
+$footerMargin: 20px auto 20px auto;
+
+/*Mixins*/
+@mixin wrapper($width: 980px) {
+  width: $width;
+  margin: 0 auto;
+}
+
+/*Common*/
+html, body {font-family: $mainFontStack; font-size: $mainFontSize; color: $mainColor; background: $whiteColor;}
+a {color: $mainColor; text-decoration: underline;}
+  a:hover {color: $linkColor;}
+.-text_center {text-align: center;}
+.-wrapper {@include wrapper(500px);}
+
+/*Header*/
+.header {padding: $headerPadding;}
+
+/*List*/
+.list {margin: $noMargin; padding: $noPadding; list-style: none;}
+  .list li {display: inline-block; padding: $listPadding;}
+    .list li:last-child {padding: $noPadding;}
+
+/*Footer*/
+.footer {margin: $footerMargin;}

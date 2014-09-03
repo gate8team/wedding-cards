@@ -1,0 +1,46 @@
+@import url(normalize.css);
+@import url(common.css);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700&subset=latin,cyrillic-ext);
+/*Variables*/
+/*Mixins*/
+/*Common*/
+html, body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 11pt;
+  color: #746254;
+  background: white; }
+
+a {
+  color: #746254;
+  text-decoration: underline; }
+
+a:hover {
+  color: #746206; }
+
+.-text_center {
+  text-align: center; }
+
+.-wrapper {
+  width: 500px;
+  margin: 0 auto; }
+
+/*Header*/
+.header {
+  padding: 10px 5px 10px 5px; }
+
+/*List*/
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+.list li {
+  display: inline-block;
+  padding: 0 10px 0 0; }
+
+.list li:last-child {
+  padding: 0; }
+
+/*Footer*/
+.footer {
+  margin: 20px auto 20px auto; }
