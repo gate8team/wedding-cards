@@ -22,7 +22,7 @@ hr {
   height: 1px;
   border: 0;
   display: block;
-  margin: 10px 0 10px 0;
+  margin: 10px 0 0px 0;
   padding: 0; }
 
 .-text_center {
@@ -35,14 +35,28 @@ hr {
   width: 500px;
   margin: 0 auto; }
 
+input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], input[type="color"], textarea {
+  font-family: "Open Sans", sans-serif; }
+
 /*Header*/
 .header {
   padding: 10px 5px 10px 5px; }
 
 /*Menu*/
 .menu {
-  padding: 0px 0 20px 0;
+  padding: 0px 0 0px 0;
   font-size: 11pt; }
+
+/*Form*/
+.form {
+  padding: 15px 0 15px 0; }
+  .form .info {
+    font-size: 9pt; }
+
+/*Main*/
+.main {
+  height: 420px;
+  overflow-y: scroll; }
 
 /*List*/
 .list {
@@ -58,15 +72,20 @@ hr {
   padding: 0; }
 
 /*Friends*/
-.friends {
-  height: 420px;
-  overflow-y: scroll; }
-
 .friend {
   background: #f7f7f1;
   padding: 10px 15px 10px 15px;
-  font-size: 11pt;
+  font-size: 13pt;
   height: 90px; }
+  .friend .ava {
+    display: table-cell;
+    vertical-align: middle; }
+  .friend .description {
+    display: table-cell;
+    vertical-align: middle; }
+  .friend .invite {
+    display: table-cell;
+    vertical-align: middle; }
 
 .friend + .friend {
   margin: 10px 0 0 0; }

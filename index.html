@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="weddingCard">
 <head>
     <meta charset="utf-8">
     <title>Wedding Cards</title>
@@ -10,114 +10,34 @@
         <a href="#"><img src="./static/i/img--logo--birds.jpg"></a>
     </header>
     <section class="menu -wrapper -text_center">
-        <ul class="list -text_center">
-            <li><a href="#">Моя свадьба</a></li>
-            <li><a href="#">Друзья</a></li>
-            <li><a href="#">Открытки</a></li>
-        </ul>
+        <div>
+            <ul class="list -text_center">
+                <li><a href="#">Моя свадьба</a></li>
+                <li><a href="#">Друзья</a></li>
+                <li><a href="#">Открытки</a></li>
+            </ul>
+        </div>
     </section>
-    <section class="friends -wrapper">
-        <div class="friend row">
-            <div class="col -left -part1of4">
-                <img src="./static/i/img--ava.png" height="60px">
-            </div>
-            <div class="col -left -part1of2">
-                Никита Молковский
-                <hr>
-                <a href="#" class="link">Друг жениха</a>
-                <a href="#" class="link">Подружка невесты</a>
-            </div>
-            <div class="col -left -part1of4 -text_right">
-                <a href="#" class="heart -inline"></a>
-            </div>
+    <section class="form -wrapper -text_center">
+        <div class="search">
+            <input type="text" placeholder="Введите имя друга">
         </div>
-
-        <div class="friend row">
-            <div class="col -left -part1of4">
-                <img src="./static/i/img--ava.png" height="60px">
-            </div>
-            <div class="col -left -part1of2">
-                Никита Молковский
-                <hr>
-                <a href="#" class="link">Друг жениха</a>
-                <a href="#" class="link">Подружка невесты</a>
-            </div>
-            <div class="col -left -part1of4 -text_right">
-                <a href="#" class="heart -inline"></a>
-            </div>
+        <div class="info">
+            <span>Выбрано: 10 друзей</span>
         </div>
-
-        <div class="friend row">
-            <div class="col -left -part1of4">
-                <img src="./static/i/img--ava.png" height="60px">
+    </section>
+    <section class="main -wrapper" ng-controller="UserController">
+        <div class="friend row" ng-repeat="user in userList">
+            <div class="ava col -left -part1of4">
+                <img src="{{user.getAvatar()}}" height="60px">
             </div>
-            <div class="col -left -part1of2">
-                Никита Молковский
+            <div class="description col -left -part1of2">
+                {{user.getFirstName() + ' ' + user.getLastName()}}
                 <hr>
                 <a href="#" class="link">Друг жениха</a>
                 <a href="#" class="link">Подружка невесты</a>
             </div>
-            <div class="col -left -part1of4 -text_right">
-                <a href="#" class="heart -inline"></a>
-            </div>
-        </div>
-
-        <div class="friend row">
-            <div class="col -left -part1of4">
-                <img src="./static/i/img--ava.png" height="60px">
-            </div>
-            <div class="col -left -part1of2">
-                Никита Молковский
-                <hr>
-                <a href="#" class="link">Друг жениха</a>
-                <a href="#" class="link">Подружка невесты</a>
-            </div>
-            <div class="col -left -part1of4 -text_right">
-                <a href="#" class="heart -inline"></a>
-            </div>
-        </div>
-
-        <div class="friend row">
-            <div class="col -left -part1of4">
-                <img src="./static/i/img--ava.png" height="60px">
-            </div>
-            <div class="col -left -part1of2">
-                Никита Молковский
-                <hr>
-                <a href="#" class="link">Друг жениха</a>
-                <a href="#" class="link">Подружка невесты</a>
-            </div>
-            <div class="col -left -part1of4 -text_right">
-                <a href="#" class="heart -inline"></a>
-            </div>
-        </div>
-
-        <div class="friend row">
-            <div class="col -left -part1of4">
-                <img src="./static/i/img--ava.png" height="60px">
-            </div>
-            <div class="col -left -part1of2">
-                Никита Молковский
-                <hr>
-                <a href="#" class="link">Друг жениха</a>
-                <a href="#" class="link">Подружка невесты</a>
-            </div>
-            <div class="col -left -part1of4 -text_right">
-                <a href="#" class="heart -inline"></a>
-            </div>
-        </div>
-
-        <div class="friend row">
-            <div class="col -left -part1of4">
-                <img src="./static/i/img--ava.png" height="60px">
-            </div>
-            <div class="col -left -part1of2">
-                Никита Молковский
-                <hr>
-                <a href="#" class="link">Друг жениха</a>
-                <a href="#" class="link">Подружка невесты</a>
-            </div>
-            <div class="col -left -part1of4 -text_right">
+            <div class="invite col -left -part1of4 -text_right">
                 <a href="#" class="heart -inline"></a>
             </div>
         </div>
@@ -131,5 +51,43 @@
             <li><a href="#">Контакты</a></li>
         </ul>
     </footer>
+
+    <!--Libs starts here-->
+    <script src="./static/js/libs/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//vk.com/js/api/xd_connection.js?2" type="text/javascript"></script>
+    <!--Libs ends here-->
+
+    <!--My logic starts here-->
+    <script src="./static/js/core/Common.js"></script>
+    <script src="./static/js/models/User.js"></script>
+    <script src="./static/js/App.js"></script>
+    <!--My logic ends here-->
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+//            var usersList = [];
+//
+//            VK.init(function() {
+//                VK.api("friends.get", {fields: "online,photo", test_mode: 1}, function(data) {
+//                    if (data.response && data.response.length > 0) {
+//                        data = data.response;
+//
+//                        for (var i = 0; i < data.length; i++) {
+//                            usersList.push(new User({
+//                                firstName: data[i].first_name,
+//                                lastName: data[i].last_name,
+//                                uid: data[i].uid,
+//                                online: data[i].online,
+//                                avatar: data[i].photo
+//                            }));
+//                        }
+//                    }
+//
+//                    console.log(usersList);
+//                });
+//            });
+        });
+    </script>
 </body>
 </html>

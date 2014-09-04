@@ -16,16 +16,18 @@ $footerMargin: 20px auto 20px auto;
 $friendBgColor: #f7f7f1;
 $friendPadding: 10px 15px 10px 15px;
 $friendTextColor: #83888c;
-$friendFontSize: 11pt;
+$friendFontSize: 13pt;
 $friendLinksFontSize: 9pt;
 $friendHeight: 90px;
 $redColor: #ca7068;
 $friendMargin: 10px 0 0 0;
-$menuPadding: 0px 0 20px 0;
+$menuPadding: 0px 0 0px 0;
 $footerFontSize: 10pt;
 $menuFontSize: 11pt;
-$hrMargin: 10px 0 10px 0;
-$friendsBlockHeight: 420px;
+$hrMargin: 10px 0 0px 0;
+$mainBlockHeight: 420px;
+$formPadding: 15px 0 15px 0;
+$formInfoFontSize: 9pt;
 
 /*Mixins*/
 @mixin wrapper($width: 980px) {
@@ -48,11 +50,26 @@ hr {background: #e5e5df; height: 1px; border: 0; display: block; margin: $hrMarg
 .-text_right {text-align: right;}
 .-wrapper {@include wrapper(500px);}
 
+input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], input[type="color"], textarea {
+  font-family: $mainFontStack;
+}
+
 /*Header*/
 .header {padding: $headerPadding;}
 
 /*Menu*/
 .menu {padding: $menuPadding; font-size: $menuFontSize;}
+
+/*Form*/
+.form {
+  padding: $formPadding;
+
+  .search {}
+  .info {font-size: $formInfoFontSize;}
+}
+
+/*Main*/
+.main {height: $mainBlockHeight; overflow-y: scroll;}
 
 /*List*/
 .list {margin: $noMargin; padding: $noPadding; list-style: none;}
@@ -60,8 +77,13 @@ hr {background: #e5e5df; height: 1px; border: 0; display: block; margin: $hrMarg
     .list li:last-child {padding: $noPadding;}
 
 /*Friends*/
-.friends {height: $friendsBlockHeight; overflow-y: scroll;}
-.friend {background: $friendBgColor; padding: $friendPadding; font-size: $friendFontSize; height: $friendHeight;}
+.friend {
+  background: $friendBgColor; padding: $friendPadding; font-size: $friendFontSize; height: $friendHeight;
+
+  .ava {display: table-cell; vertical-align: middle;}
+  .description {display: table-cell; vertical-align: middle;}
+  .invite {display: table-cell; vertical-align: middle;}
+}
   .friend + .friend {margin: $friendMargin;}
   .friend .link {font-size: $friendLinksFontSize; color: $redColor;}
   .friend .invite {line-height: $friendHeight;}
