@@ -26,7 +26,8 @@ $footerFontSize: 10pt;
 $menuFontSize: 11pt;
 $hrMargin: 10px 0 0px 0;
 $mainBlockHeight: 420px;
-$formPadding: 15px 0 15px 0;
+$formPadding: 15px 0 0 0;
+$userFormPadding: 0 0 15px 0;
 $formInfoFontSize: 9pt;
 
 /*Mixins*/
@@ -69,7 +70,11 @@ input[type="text"], input[type="password"], input[type="date"], input[type="date
 }
 
 /*Main*/
-.main {height: $mainBlockHeight; overflow-y: scroll;}
+.main {
+  .form {padding: $userFormPadding;}
+}
+  .main .friend-list {height: $mainBlockHeight; overflow-y: scroll;}
+
 
 /*List*/
 .list {margin: $noMargin; padding: $noPadding; list-style: none;}

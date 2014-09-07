@@ -22,23 +22,27 @@
         <div class="search">
             <input type="text" placeholder="Введите имя друга">
         </div>
-        <div class="info">
-            <span>Выбрано: 10 друзей</span>
-        </div>
     </section>
     <section class="main -wrapper" ng-controller="UserController">
-        <div class="friend row" ng-repeat="user in userList">
-            <div class="ava col -left -part1of4">
-                <img src="{{user.getAvatar()}}" height="60px">
+        <div class="form -wrapper -text_center">
+            <div class="info">
+                <span>Выбрано: 10 друзей</span>
             </div>
-            <div class="description col -left -part1of2">
-                {{user.getFirstName() + ' ' + user.getLastName()}}
-                <hr>
-                <a href="#" class="link">Друг жениха</a>
-                <a href="#" class="link">Подружка невесты</a>
-            </div>
-            <div class="invite col -left -part1of4 -text_right">
-                <a href="#" class="heart -inline"></a>
+        </div>
+        <div class="friend-list">
+            <div class="friend row" ng-repeat="user in userList">
+                <div class="ava col -left -part1of4">
+                    <img src="{{ user.getAvatar() }}" height="60px">
+                </div>
+                <div class="description col -left -part1of2">
+                    {{user.getFirstName() + ' ' + user.getLastName()}}
+                    <hr>
+                    <a href="#" class="link">Друг жениха</a>
+                    <a href="#" class="link">Подружка невесты</a>
+                </div>
+                <div class="invite col -left -part1of4 -text_right">
+                    <a href="#" class="heart -inline"></a>
+                </div>
             </div>
         </div>
     </section>

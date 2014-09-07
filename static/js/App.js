@@ -1,62 +1,44 @@
+(function() {
+
 var app = angular.module('weddingCard', []);
 
-app.controller('UserController', function($scope){
-    $scope.userList = [
-        new User({
-            firstName: 'Максим',
-            lastName: 'Филипповский',
-            uid: 17075055,
-            online: 1,
-            avatar: 'http://cs613527.vk.me/v613527055/1b6ea/AMsBd4j750A.jpg'
-        }),
-        new User({
-            firstName: 'Максим',
-            lastName: 'Филипповский',
-            uid: 17075055,
-            online: 1,
-            avatar: 'http://cs613527.vk.me/v613527055/1b6ea/AMsBd4j750A.jpg'
-        }),
-        new User({
-            firstName: 'Максим',
-            lastName: 'Филипповский',
-            uid: 17075055,
-            online: 1,
-            avatar: 'http://cs613527.vk.me/v613527055/1b6ea/AMsBd4j750A.jpg'
-        }),
-        new User({
-            firstName: 'Максим',
-            lastName: 'Филипповский',
-            uid: 17075055,
-            online: 1,
-            avatar: 'http://cs613527.vk.me/v613527055/1b6ea/AMsBd4j750A.jpg'
-        }),
-        new User({
-            firstName: 'Максим',
-            lastName: 'Филипповский',
-            uid: 17075055,
-            online: 1,
-            avatar: 'http://cs613527.vk.me/v613527055/1b6ea/AMsBd4j750A.jpg'
-        })
-    ];
+app.factory('UserFactory', function($q){
+   return {
+       getFriendList: function() {
+           var deferred = $q.defer();
+           VK.init(function() {
+               VK.api("friends.get", {fields: "online,photo", test_mode: 1}, function(data) {
+                   var userList = [];
+                   if (data.response && data.response.length > 0) {
+                       data = data.response;
 
-    $scope.init = function() {
-        VK.init(function() {
-            VK.api("friends.get", {fields: "online,photo", test_mode: 1}, function(data) {
-                if (data.response && data.response.length > 0) {
-                    data = data.response;
-
-                    for (var i = 0; i < data.length; i++) {
-                        var user = new User({
-                            firstName: data[i].first_name,
-                            lastName: data[i].last_name,
-                            uid: data[i].uid,
-                            online: data[i].online,
-                            avatar: data[i].photo
-                        });
-                        $scope.userList.push(user);
-                    }
-                }
-            });
-        });
-    }
+                       for (var i = 0; i < data.length; i++) {
+                           var user = new User({
+                               firstName: data[i].first_name,
+                               lastName: data[i].last_name,
+                               uid: data[i].uid,
+                               online: data[i].online,
+                               avatar: data[i].photo
+                           });
+                           userList.push(user);
+                       }
+                   }
+                   deferred.resolve(userList);
+               });
+           });
+           return deferred.promise;
+       }
+   }
 });
+
+app.controller('UserController', function($scope, UserFactory){
+    $scope.usersInfo = {};
+
+    $scope.userList = UserFactory.getFriendList();
+
+    $scope.userList.then(function (userList) {
+        $scope.userList = userList;
+    });
+});
+
+})();

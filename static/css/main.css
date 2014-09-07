@@ -49,12 +49,15 @@ input[type="text"], input[type="password"], input[type="date"], input[type="date
 
 /*Form*/
 .form {
-  padding: 15px 0 15px 0; }
+  padding: 15px 0 0 0; }
   .form .info {
     font-size: 9pt; }
 
 /*Main*/
-.main {
+.main .form {
+  padding: 0 0 15px 0; }
+
+.main .friend-list {
   height: 420px;
   overflow-y: scroll; }
 
