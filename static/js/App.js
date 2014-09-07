@@ -34,11 +34,22 @@ app.factory('UserFactory', function($q){
 app.controller('UserController', function($scope, UserFactory){
     $scope.usersInfo = {};
 
-    $scope.userList = UserFactory.getFriendList();
+    $scope.usersInfo.selectedFriendsCount = 0;
+    $scope.usersInfo.selectedFriendsList = [];
+    $scope.usersInfo.userList = UserFactory.getFriendList();
 
-    $scope.userList.then(function (userList) {
-        $scope.userList = userList;
+    $scope.usersInfo.userList.then(function (userList) {
+        $scope.usersInfo.userList = userList;
     });
+
+    $scope.selectIt = function(uid) {
+        var index = $scope.usersInfo.selectedFriendsList.indexOf(uid);
+        if (index > -1) {
+            $scope.usersInfo.selectedFriendsList.splice(index, 1);
+        } else {
+            $scope.usersInfo.selectedFriendsList.push(uid);
+        }
+    };
 });
 
 })();

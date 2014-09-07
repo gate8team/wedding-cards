@@ -26,11 +26,11 @@
     <section class="main -wrapper" ng-controller="UserController">
         <div class="form -wrapper -text_center">
             <div class="info">
-                <span>Выбрано: 10 друзей</span>
+                <span>Выбрано: {{usersInfo.selectedFriendsList.length}} друзей</span>
             </div>
         </div>
         <div class="friend-list">
-            <div class="friend row" ng-repeat="user in userList">
+            <div class="friend row" ng-repeat="user in usersInfo.userList">
                 <div class="ava col -left -part1of4">
                     <img src="{{ user.getAvatar() }}" height="60px">
                 </div>
@@ -41,7 +41,7 @@
                     <a href="#" class="link">Подружка невесты</a>
                 </div>
                 <div class="invite col -left -part1of4 -text_right">
-                    <a href="#" class="heart -inline"></a>
+                    <a href="#" ng-click="selectIt(user.getUID())" ng-class="{'-red': usersInfo.selectedFriendsList.indexOf(user.getUID()) > -1}" class="heart -inline"></a>
                 </div>
             </div>
         </div>
